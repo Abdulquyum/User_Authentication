@@ -15,7 +15,7 @@ class Auth:
         """imported db class"""
         self._db = DB()
 
-    def register_user(self, email, password) -> User:
+    def register_user(self, first_name, last_name, email, phone_number, address, password) -> User:
         """help register method"""
         try:
             self._db.find_user_by(email=email)
@@ -23,7 +23,7 @@ class Auth:
 
         except NoResultFound as err:
             hashed_password = self._hash_password(password)
-            new_user = self._db.add_user(email, hashed_password)
+            new_user = self._db.add_user(first_name, last_name, email, phone_number, address, hashed_password)
 
             return new_user
 
