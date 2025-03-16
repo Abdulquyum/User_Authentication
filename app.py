@@ -25,8 +25,10 @@ def users():
     address = request.form.get('address')
     password = request.form.get('password')
     try:
-        AUTH.register_user(email, password)
+        AUTH.register_user(first_name, last_name, email, phone_number, address, password)
         return jsonify({
+            "first_name": first_name,
+            "last_name": last_name,
             "email": email,
             "message": "user created"
             })
