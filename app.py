@@ -18,7 +18,11 @@ def basic():
 @app.route("/users", methods=['POST'], strict_slashes=False)
 def users():
     """Register user"""
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
     email = request.form.get('email')
+    phone_number = request.form.get('phone_number')
+    address = request.form.get('address')
     password = request.form.get('password')
     try:
         AUTH.register_user(email, password)
@@ -30,7 +34,7 @@ def users():
         return jsonify({
             "message": "email already registered"
             }), 400
-
+    
 @app.route("/sessions", methods=['POST'], strict_slashes=False)   
 def login():
     """Log in authorized user"""
